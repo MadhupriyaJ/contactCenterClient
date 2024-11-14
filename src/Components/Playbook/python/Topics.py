@@ -5,11 +5,11 @@ from openai import AzureOpenAI
 from dotenv import load_dotenv
 
 # Initialize Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint='https://11234.openai.azure.com/',
-    api_key='382dOzcfVVReqzAl2Rd38wBSoC3UaOaXI2QR8Nk580dXqseuJABtJQQJ99AKACYeBjFXJ3w3AAABACOG7zP9',
-    api_version="2024-02-15-preview"
-)
+# client = AzureOpenAI(
+#     azure_endpoint='https://11234.openai.azure.com/',
+#     api_key='382dOzcfVVReqzAl2Rd38wBSoC3UaOaXI2QR8Nk580dXqseuJABtJQQJ99AKACYeBjFXJ3w3AAABACOG7zP9',
+#     api_version="2024-02-15-preview"
+# )
 
 # Create the assistant
 assistant = client.beta.assistants.create(
