@@ -127,44 +127,47 @@ def predict():
     
 
 
-# @app.route('/topic-modeling', methods=['POST'])  # Change to POST
-# def topic_modeling():
-#     # Get text documents from the request body
-#     data = request.get_json()
-#     text_documents = data.get('textDocuments', [])
-#     print("Received text documents:", text_documents)
-    
-#     if not text_documents:
-#         return jsonify({"error": "No text documents provided."}), 400
-    
-#     # Process topic modeling
-#     try:
-#         topics = process_topic_modeling(text_documents)
-#         print("Topics")
-#         print(topics)
-#         return jsonify({"topics": topics}), 200
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-
-@app.route('/topic-modeling',methods=['POST'])
+@app.route('/topic-modeling', methods=['POST'])
 def topic_modeling():
-     # Get text documents from the request body
     data = request.get_json()
-    text_documents = data.get('textDocuments',[])
-    print("Received text documents:",text_documents)
+    text_documents = data.get('textDocuments', [])
+    print("Received text documents:", text_documents)
 
     if not text_documents:
-        return jsonify({"error" : "No text documents provided."}),400
-     # Process topic modeling for each file separately
-    try:
-        topics_per_file = {}
-        for i,text_document in enumerate(text_documents):
-            topics = process_topic_modeling([text_document]) # Process each document individually
-            topics_per_file[f"File_{i+1}"] = topics #Use a unique key per file or use actual file names if available
+        return jsonify({"error": "No text documents provided."}), 400
 
-        return jsonify(topics_per_file),200
+    try:
+        # Process each text document
+        topics_results = process_topic_modeling(text_documents)
+
+        # Organize the topics per file
+        topics_per_file = {f"File_{i+1}": topics for i, topics in enumerate(topics_results)}
+        print("Topics_per_file:",topics_per_file)
+
+        return jsonify(topics_per_file), 200
     except Exception as e:
-        return jsonify({"error":str(e)}),500 
+        return jsonify({"error": f"Failed to process topic modeling: {str(e)}"}), 500
+
+
+# @app.route('/topic-modeling',methods=['POST'])
+# def topic_modeling():
+#      # Get text documents from the request body
+#     data = request.get_json()
+#     text_documents = data.get('textDocuments',[])
+#     print("Received text documents:",text_documents)
+
+#     if not text_documents:
+#         return jsonify({"error" : "No text documents provided."}),400
+#      # Process topic modeling for each file separately
+#     try:
+#         topics_per_file = {}
+#         for i,text_document in enumerate(text_documents):
+#             topics = process_topic_modeling([text_document]) # Process each document individually
+#             topics_per_file[f"File_{i+1}"] = topics #Use a unique key per file or use actual file names if available
+
+#         return jsonify(topics_per_file),200
+#     except Exception as e:
+#         return jsonify({"error":str(e)}),500 
 
 
 @app.route('/api/generate-summary', methods=['POST'])

@@ -34,6 +34,7 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // Loading state
   console.log("Authenticated in App.js:", authenticated);
+
   
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticated") === "true";// Check for user authentication in local storage during each component render
@@ -49,6 +50,7 @@ const App = () => {
 
   return (
     <div>
+      
       <Router>
         <Routes>
           <Route path="/" element={<Login setAuthenticated={setAuthenticated} />} />
@@ -85,6 +87,7 @@ const App = () => {
         </Route> */}
         </Routes>
       </Router>
+      
     </div>
   );
 };

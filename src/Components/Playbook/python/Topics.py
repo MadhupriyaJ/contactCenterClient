@@ -4,21 +4,10 @@ import json
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-# load_dotenv(dotenv_path='metronics_v8.2.0-main/src/Components/Playbook/python/.env', override=True)
-
-
-
-# azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-# api_key = os.getenv("AZURE_OPENAI_API_KEY")
-# print('azure_endpoint',azure_endpoint)
-# print('api_key',api_key )
-
-
 # Initialize Azure OpenAI client
 client = AzureOpenAI(
-    azure_endpoint='https://topicmodelingforthottaneketta.openai.azure.com/',
-    api_key='a279c736c8e64b3fa82f8f1958696cf6',
+    azure_endpoint='https://11234.openai.azure.com/',
+    api_key='382dOzcfVVReqzAl2Rd38wBSoC3UaOaXI2QR8Nk580dXqseuJABtJQQJ99AKACYeBjFXJ3w3AAABACOG7zP9',
     api_version="2024-02-15-preview"
 )
 
@@ -26,8 +15,7 @@ client = AzureOpenAI(
 assistant = client.beta.assistants.create(
     model="gpt-4",  # Replace with model deployment name.
     instructions=(
-        "You are an expert in topic modeling and text analysis. "
-        "Analyze the following text and identify the main topics. Provide a list of 1-3 topics without a  description for each. Text: {text}"
+         "You are an expert in topic modeling and text analysis. Analyze the following texts, one by one, and identify the main topics for each. For each text, provide a list of 1-3 topics without a description. Texts: {text_1}, {text_2}, {text_3}, ... {text_n}"
     ),
     # tools=None,
     # tool_resources={},
@@ -35,48 +23,67 @@ assistant = client.beta.assistants.create(
     top_p=1
 )
 
+# Topics.py
+
 def process_topic_modeling(text_documents):
-    print("text documents from client:",text_documents)
-    # Create a thread
-    thread = client.beta.threads.create()
+    results = []
+    attempt = 0
+    max_retries = 3
+    success = False
 
-    # Add user question to the thread
-    message = client.beta.threads.messages.create(
-        thread_id=thread.id,
-        role="user",
-        content=json.dumps({"textDocuments": text_documents})  # Send text documents as JSON
-    )
+    while attempt < max_retries and not success:
+        try:
+            print(f"Processing {len(text_documents)} documents for topic modeling. (Attempt {attempt + 1})")
 
-    # Run the thread
-    run = client.beta.threads.runs.create(
-        thread_id=thread.id,
-        assistant_id=assistant.id
-    )
+            # Create a thread for topic modeling
+            thread = client.beta.threads.create()
 
-    # Looping until the run completes or fails
-    while run.status in ['queued', 'in_progress', 'cancelling']:
-        time.sleep(1)
-        run = client.beta.threads.runs.retrieve(
-            thread_id=thread.id,
-            run_id=run.id
-        )
+            # Send all text documents at once in the 'textDocuments' list
+            client.beta.threads.messages.create(
+                thread_id=thread.id,
+                role="user",
+                content=json.dumps({"textDocuments": [doc['transcription'] for doc in text_documents]})
+            )
 
-    if run.status == 'completed':
-        messages = client.beta.threads.messages.list(
-            thread_id=thread.id
-        )
-        # Initialize an empty list to hold the assistant's messages
-        assistant_messages = []
+            run = client.beta.threads.runs.create(
+                thread_id=thread.id,
+                assistant_id=assistant.id
+            )
 
-        # Iterate through the messages to find the assistant's response
-        for message in messages.data:
-            if message.role == 'assistant':
-                assistant_messages.append(message.content[0].text.value)
+            while run.status in ['queued', 'in_progress', 'cancelling']:
+                time.sleep(1)
+                run = client.beta.threads.runs.retrieve(
+                    thread_id=thread.id,
+                    run_id=run.id
+                )
 
-        return assistant_messages
+            if run.status == 'completed':
+                messages = client.beta.threads.messages.list(thread_id=thread.id)
+                assistant_message = next(
+                    (message.content[0].text.value for message in messages.data if message.role == 'assistant'),
+                    []
+                )
+                results.append(assistant_message if assistant_message else [])
+                success = True
+            elif run.status == 'requires_action':
+                results.append("Error: The assistant requires further actions.")
+                success = True
+            else:
+                print(f"Run failed with status: {run.status}")
+                if hasattr(run, 'error_details'):
+                    print(f"Error details: {run.error_details}")
+                else:
+                    results.append(f"Error: Run failed with status {run.status}")
+                success = True
+        except Exception as e:
+            print(f"Error processing documents on attempt {attempt + 1}: {e}")
+            attempt += 1
+            if attempt == max_retries:
+                results.append(f"Error processing documents after {max_retries} attempts: {str(e)}")
 
-    elif run.status == 'requires_action':
-        raise Exception("The assistant requires further actions to complete the request.")
-    else:
-        raise Exception(f"Run status: {run.status}")
+    return results
+
+
+
+
 
