@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from '../Asset/playbook/snowflake-logo.png'
+import logo from '../Asset/playbook/cerulean-logo(1).png'
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Register = () => {
@@ -94,15 +94,15 @@ const Register = () => {
     navigate("/login");
   };
   return (
-    <div id="kt_body" class="bg-body">
+    <div id="kt_body" class="bg-body ">
       <div class="d-flex flex-column flex-root">
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
-          <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed bg-black">
+          <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20 shadow-sm shadow-slate-500">
             <a href="../../demo1/dist/index.html" class="mb-12">
-              <img alt="Logo" src={logo} class="h-40px rounded-lg px-20 " />
+              <img alt="Logo" src={logo} class="h-32 rounded-lg px-20 " />
             </a>
-            <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-              <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" >
+            <div class="w-lg-600px bg-body rounded  p-10 p-lg-15 mx-auto shadow-2xl shadow-slate-500">
+              <form class="form w-100 " novalidate="novalidate" id="kt_sign_up_form" >
                 <div class="mb-10 text-center">
                   <h1 class="text-dark mb-3 text-3xl"><strong>Create an Account</strong></h1>
                   <div class="text-gray-400 fw-bold fs-4">

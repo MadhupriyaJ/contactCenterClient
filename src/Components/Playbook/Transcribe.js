@@ -48,28 +48,33 @@ const Transcribe = () => {
     };
 
     return (
-        <div className="flex ">
-        <div>
-          <SnowflakeAside
-            asideOpen={asideOpen}
-            selectedTable={selectedTable}
-            setSelectedTable={setSelectedTable}
-            onTableSelect={handleTableSelect}
-          />
-        </div>
+    //     <div className="flex ">
+    //     <div>
+    //       <SnowflakeAside
+    //         asideOpen={asideOpen}
+    //         selectedTable={selectedTable}
+    //         setSelectedTable={setSelectedTable}
+    //         onTableSelect={handleTableSelect}
+    //       />
+    //     </div>
   
-        <div className="h-22 w-full ">
-          <div>
-            <div className="bg-gray-100 vh-100 w-full">            
-                <Header username={username} onLogout={handleLogout} />             
-                <div className="m-8 bg-slate-500">
-                <Text/>
-                </div>
-              </div>
-          <Outlet />
-        </div>
-      </div>
+    //     <div className="h-22 w-full ">
+    //       <div>
+    //         <div className="bg-gray-100 vh-100 w-full">            
+    //             {/* <Header username={username} onLogout={handleLogout} />              */}
+    //             <div className="m-8 bg-slate-500">
+    //             <Text/>
+    //             </div>
+    //           </div>
+    //       <Outlet />
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="bg-gray-100 vh-100 w-full">
+    <div className="m-8 bg-slate-500">
+      <Text />
     </div>
+  </div>
     );
 }
 

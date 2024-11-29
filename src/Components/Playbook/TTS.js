@@ -266,8 +266,8 @@ const TTS = () => {
 
 
   return (
-    <div className='flex  '>
-      <div className={`h-[vh-100] bg-slate-900`}>
+    <div className=''>
+      {/* <div className={`h-[vh-100] bg-slate-900`}>
         <SnowflakeAside asideOpen={asideOpen}
           selectedTable={selectedTable} // Pass selected table to AsideBk
           setSelectedTable={setSelectedTable}
@@ -276,79 +276,79 @@ const TTS = () => {
       </div>
 
       <div className='h-22 w-full '>
-        {/* <Header /> */}
+        {/* <Header /> 
         <div>
           <div>
-            <Header />
+            <Header /> */}
 
-            <div className="bg-gray-100 flex justify-center h-max">
-              <div className="card container p-8 rounded-lg shadow-md w-full h-5/6">
-                <div className="text-3xl font-bold text-center">Text to Audio</div>
+      {/* <div className="bg-gray-100 flex justify-center h-max"> */}
+        <div className="card container p-8 rounded-lg shadow-md w-full ">
+          <div className="text-3xl font-bold text-center">Text to Audio</div>
 
-                <div className="mt-4 flex justify-center">
-                  <audio ref={audioRef} className="w-800px mt-4" controls />
-                </div>
+          <div className="mt-4 flex justify-center">
+            <audio ref={audioRef} className="w-800px mt-4" controls />
+          </div>
 
 
-                <div className="container d-flex shadow-lg rounded-lg mt-2 h-full bg-stone-200">
-                  <div className='d-flex flex-col'>
-                    <div className="container h-440px w-700px mt-4 mb-2 rounded-lg bg-stone-100">
-                      <div className="card-body container card-scroll items-center justify-center" style={{ display: 'flex', flexDirection: 'column' }}>
-                        <ul className="nav nav-tabs" id="myTabs" role="tablist">
-                          <li className="nav-item" role="presentation">
-                            <button className="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text" type="button" role="tab"
-                              aria-controls="analyze" aria-selected="true"
-                              onClick={() => handleTabChange('text')}>TEXT HERE</button>
-                          </li>
-                          <li className="nav-item" role="presentation">
-                            <button className="nav-link " id="document-tab" data-bs-toggle="tab" data-bs-target="#document" type="button" role="tab" aria-controls="json" aria-selected="false">UPLOAD DOCUMENT</button>
-                          </li>
-                        </ul>
-                        <div className="tab-content" id="myTabContent">
-                          <div className="tab-pane fade show active " id="text" role="tabpanel" aria-labelledby="text-tab">
-                            <div className="relative w-full h-full">
-                              <textarea
-                                placeholder="Type your text here..."
-                                // className=" p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-700px  h-350px"
-                                className="form-control scroll scroll-pull w-700px  h-350px mt-1 z-0 shadow-2xl position-relative pr-5"
-                                value={inputText} // Bind the value to inputText state
-                                onChange={(e) => setInputText(e.target.value)} // Update inputText state on change
-                              />
-                              <button onClick={() => textToSpeech(inputText)}
-                                className=" right-96 top-90 bottom-1 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700
+          <div className="container d-flex shadow-lg rounded-lg mt-2 h-full bg-stone-200">
+            <div className='d-flex flex-col'>
+              <div className="container h-440px w-700px mt-4 mb-2 rounded-lg bg-stone-100">
+                <div className="card-body container card-scroll items-center justify-center" style={{ display: 'flex', flexDirection: 'column' }}>
+                  <ul className="nav nav-tabs" id="myTabs" role="tablist">
+                    <li className="nav-item" role="presentation">
+                      <button className="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text" type="button" role="tab"
+                        aria-controls="analyze" aria-selected="true"
+                        onClick={() => handleTabChange('text')}>TEXT HERE</button>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                      <button className="nav-link " id="document-tab" data-bs-toggle="tab" data-bs-target="#document" type="button" role="tab" aria-controls="json" aria-selected="false">UPLOAD DOCUMENT</button>
+                    </li>
+                  </ul>
+                  <div className="tab-content" id="myTabContent">
+                    <div className="tab-pane fade show active " id="text" role="tabpanel" aria-labelledby="text-tab">
+                      <div className="relative w-full h-full">
+                        <textarea
+                          placeholder="Type your text here..."
+                          // className=" p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-700px  h-350px"
+                          className="form-control scroll scroll-pull w-700px  h-350px mt-1 z-0 shadow-2xl position-relative pr-5"
+                          value={inputText} // Bind the value to inputText state
+                          onChange={(e) => setInputText(e.target.value)} // Update inputText state on change
+                        />
+                        <button onClick={() => textToSpeech(inputText)}
+                          className=" right-96 top-90 bottom-1 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700
                                             focus:outline-none focus:ring-2 focus:ring-blue-500 mt-4  absolute  ">
-                                Play Audio
+                          Play Audio
 
-                              </button>
+                        </button>
 
-                            </div>
-                          </div>
+                      </div>
+                    </div>
 
-                          {/* upload document */}
-                          <div className="tab-pane fade  " id="document" role="tabpanel" aria-labelledby="document-tab">
-                            <div className='card card-custom container mt-4 w-700px  h-350px shadow-md'
-                              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                            >
-                              <h1 className="text-4xl font-bold mb-4">Document</h1>
-                              <div className='mb-2'>
-                                <CloudUploadIcon fontSize="inherit" style={{ color: '#007bff', fontSize: '5em' }} />
-                              </div>
-                              <div className="mb-5 custom-file-input">
-                                <input
-                                  className="form-control border-1 pt-2 pb-2 w-400px "
-                                  type="file"
-                                  name='file'
-                                  id="filePicker"
-                                  accept=".txt"
-                                  onChange={handleFileChange}
-                                  // ref={fileInputRef}
-                                  multiple
-                                />
-                              </div>
-                            </div>
-                          </div>
+                    {/* upload document */}
+                    <div className="tab-pane fade  " id="document" role="tabpanel" aria-labelledby="document-tab">
+                      <div className='card card-custom container mt-4 w-700px  h-350px shadow-md'
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                      >
+                        <h1 className="text-4xl font-bold mb-4">Document</h1>
+                        <div className='mb-2'>
+                          <CloudUploadIcon fontSize="inherit" style={{ color: '#007bff', fontSize: '5em' }} />
                         </div>
-                        {/* <button
+                        <div className="mb-5 custom-file-input">
+                          <input
+                            className="form-control border-1 pt-2 pb-2 w-400px "
+                            type="file"
+                            name='file'
+                            id="filePicker"
+                            accept=".txt"
+                            onChange={handleFileChange}
+                            // ref={fileInputRef}
+                            multiple
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <button
                         onClick={() => textToSpeech(document.querySelector('textarea').value, false)}
                         className=" right-4 top-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-4 "
                       >
@@ -357,142 +357,142 @@ const TTS = () => {
 
 
 
+                </div>
+              </div>
+
+
+              <div className="card card-custom container mt-0 w-700px h-200px shadow-md ">
+
+                <strong>selected files</strong>
+                <div className='flex flex-column w-full  '>
+                  {selectedFiles.length > 0 ? (
+                    selectedFiles.map((file, index) => (
+                      <div key={index} className='mb-2 ' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <p className='text-primary bg-slate-100 w-4/6 h-10 flex items-center shadow-md shadow-gray-600  '>{file.name}</p>
+                        <div className='flex gap-1'>
+                          <button
+                            className='btn btn-danger btn-sm '
+                            onClick={() => handleDeleteFile(index)}
+                            title={`Delete ${file.name}`}
+                          >
+                            <i className='fas fa-trash-alt'></i>
+                          </button>
+                          <button className='btn btn-primary btn-sm' onClick={() => handleStoredFileClick(index)} ><i class="fa fa-play" aria-hidden="true"></i></button>
+                          <button className='btn btn-success btn-sm'>open</button></div>
+
+
                       </div>
-                    </div>
+                    ))
+                  ) : (
+                    <p className='text-center my-auto'>No files here</p>
+                  )}
+                </div>
 
 
-                    <div className="card card-custom container mt-0 w-700px h-200px shadow-md ">
-
-                      <strong>selected files</strong>
-                      <div className='flex flex-column w-full  '>
-                        {selectedFiles.length > 0 ? (
-                          selectedFiles.map((file, index) => (
-                            <div key={index} className='mb-2 ' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <p className='text-primary bg-slate-100 w-4/6 h-10 flex items-center shadow-md shadow-gray-600  '>{file.name}</p>
-                              <div className='flex gap-1'>
-                                <button
-                                  className='btn btn-danger btn-sm '
-                                  onClick={() => handleDeleteFile(index)}
-                                  title={`Delete ${file.name}`}
-                                >
-                                  <i className='fas fa-trash-alt'></i>
-                                </button>
-                                <button className='btn btn-primary btn-sm' onClick={() => handleStoredFileClick(index)} ><i class="fa fa-play" aria-hidden="true"></i></button>
-                                <button className='btn btn-success btn-sm'>open</button></div>
+              </div>
+            </div>
 
 
-                            </div>
-                          ))
-                        ) : (
-                          <p className='text-center my-auto'>No files here</p>
-                        )}
-                      </div>
-
-
-                    </div>
-                  </div>
-
-
-                  <div className='rounded-lg items-center w-500px h-600px d-flex flex-column mt-4 mb-2 bg-stone-100 '>
-                    {/* <!-- Nav tabs --> */}
-                    <ul className="nav nav-tabs" id="myTabs" role="tablist">
-                      {/* <li className="nav-item" role="presentation">
+            <div className='rounded-lg items-center w-500px h-600px d-flex flex-column mt-4 mb-2 bg-stone-100 '>
+              {/* <!-- Nav tabs --> */}
+              <ul className="nav nav-tabs" id="myTabs" role="tablist">
+                {/* <li className="nav-item" role="presentation">
                         <button className="nav-link active mb-2 mt-6" id="analyze-tab" data-bs-toggle="tab" data-bs-target="#analyze" type="button" role="tab" aria-controls="analyze" aria-selected="true">Selected files</button>
                       </li> */}
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link mb-2 mt-6" id="json-tab" data-bs-toggle="tab" data-bs-target="#json" type="button" role="tab" aria-controls="json" aria-selected="false" >
-                          SENTIMENT ANALYSIS
-                        </button>
-                      </li>
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link active mb-2 mt-6 " id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab" aria-controls="summary" aria-selected="false" >
-                          Summary
-                        </button>
-                      </li>
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link  mb-2 mt-6 " id="pii-tab" data-bs-toggle="tab" data-bs-target="#pii" type="button" role="tab" aria-controls="pii" aria-selected="false" >
-                          Personally identified information
-                        </button>
-                      </li>
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link mb-2 mt-6" id="json-tab" data-bs-toggle="tab" data-bs-target="#json" type="button" role="tab" aria-controls="json" aria-selected="false" >
+                    SENTIMENT ANALYSIS
+                  </button>
+                </li>
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link active mb-2 mt-6 " id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab" aria-controls="summary" aria-selected="false" >
+                    Summary
+                  </button>
+                </li>
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link  mb-2 mt-6 " id="pii-tab" data-bs-toggle="tab" data-bs-target="#pii" type="button" role="tab" aria-controls="pii" aria-selected="false" >
+                    Personally identified information
+                  </button>
+                </li>
 
-                    </ul>
+              </ul>
 
-                    {/* <!-- Tab panes --> */}
-                    <div className="tab-content  " id="myTabContent">
+              {/* <!-- Tab panes --> */}
+              <div className="tab-content  " id="myTabContent">
 
 
-                      {/* sentiment analysis */}
-                      <div className="tab-pane fade  " id="json" role="tabpanel" aria-labelledby="json-tab" >
-                        <div className="card card-custom container mt-0 w-500px h-600px p-1 shadow-md ">
-                          <strong className='text-center text-2xl'>AnalyzeSentiment</strong>
-                          {sentimentAnalysisResult && sentimentAnalysisResultconfidenceScores ? (
-                            <div className='grid grid-cols-4 mt-10 p-7 text-center'>
-                              <p> <strong className='text-lime-700'>Sentiment  : </strong> {sentimentAnalysisResult} </p>
-                              <p> <strong className='text-primary'>Positive Score :</strong> {sentimentAnalysisResultconfidenceScores.positive} </p>
-                              <p><strong className='text-danger'>Negative Score : </strong>{sentimentAnalysisResultconfidenceScores.negative} </p>
-                              <p> <strong className='text-warning'>Neutral Score : </strong>{sentimentAnalysisResultconfidenceScores.neutral} </p>
-                            </div>
-                          ) : (
-                            <p>No sentiment analysis data available</p>
-                          )}
-                        </div>
+                {/* sentiment analysis */}
+                <div className="tab-pane fade  " id="json" role="tabpanel" aria-labelledby="json-tab" >
+                  <div className="card card-custom container mt-0 w-500px h-600px p-1 shadow-md ">
+                    <strong className='text-center text-2xl'>AnalyzeSentiment</strong>
+                    {sentimentAnalysisResult && sentimentAnalysisResultconfidenceScores ? (
+                      <div className='grid grid-cols-4 mt-10 p-7 text-center'>
+                        <p> <strong className='text-lime-700'>Sentiment  : </strong> {sentimentAnalysisResult} </p>
+                        <p> <strong className='text-primary'>Positive Score :</strong> {sentimentAnalysisResultconfidenceScores.positive} </p>
+                        <p><strong className='text-danger'>Negative Score : </strong>{sentimentAnalysisResultconfidenceScores.negative} </p>
+                        <p> <strong className='text-warning'>Neutral Score : </strong>{sentimentAnalysisResultconfidenceScores.neutral} </p>
                       </div>
-
-                      <div className="tab-pane fade  show active mb-4" id="summary" role="tabpanel" aria-labelledby="summary-tab" >
-                        <div className="card card-custom container mt-0 w-500px h-600px p-1 shadow-md ">
-
-                          {/* <div className=' rounded-lg   items-center  w-500px mx-5 d-flex flex-column'> */}
-                          
-                          <button className="btn btn-primary" onClick={handleGenerateSummary}  >
-                            generate summary
-                          </button>
-
-
-                          <div className="card scroll scroll-pull card-custom container mt-4 w-full h-300px shadow-md">
-                            <strong>Abstract Summary:</strong>
-                            <textarea className="form-control h-200px mt-2" readOnly value={summary.abstract_summaries || ''} />
-                          </div>
-
-                          <div className="card scroll scroll-pull card-custom container mt-4 w-full h-210px shadow-md">
-                            <strong>Extract Summary:</strong>
-                            <textarea className="form-control h-200px mt-2" readOnly value={summary.extract_summaries || ''} />
-                          </div>
-
-                          {/* </div> */}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="tab-pane fade   mb-4" id="pii" role="tabpanel" aria-labelledby="pii-tab" >
-                      <div className="card card-custom container mt-0 w-500px h-600px p-1 shadow-md ">
-                            personally identified information
-                        <div className='overflow-y-auto'>
-                          <p className='text-black'>{redactedtext}</p>
-                          {Array.isArray(piiResult) && piiResult.map((result, index) => (
-                            <div className='grid grid-cols-2 ' key={index}>
-                              <p><strong className='text-primary text-lg'>text:</strong>{result.text}</p>
-                              <p><strong className='text-green-950 text-lg'>category:</strong>{result.category}</p>
-                            </div>
-                          ))}
-
-                        </div>
-
-
-
-                      </div>
-
-                    </div>
+                    ) : (
+                      <p>No sentiment analysis data available</p>
+                    )}
                   </div>
+                </div>
+
+                <div className="tab-pane fade  show active mb-4" id="summary" role="tabpanel" aria-labelledby="summary-tab" >
+                  <div className="card card-custom container mt-0 w-500px h-600px p-1 shadow-md ">
+
+                    {/* <div className=' rounded-lg   items-center  w-500px mx-5 d-flex flex-column'> */}
+
+                    <button className="btn btn-primary" onClick={handleGenerateSummary}  >
+                      generate summary
+                    </button>
+
+
+                    <div className="card scroll scroll-pull card-custom container mt-4 w-full h-300px shadow-md">
+                      <strong>Abstract Summary:</strong>
+                      <textarea className="form-control h-200px mt-2" readOnly value={summary.abstract_summaries || ''} />
+                    </div>
+
+                    <div className="card scroll scroll-pull card-custom container mt-4 w-full h-210px shadow-md">
+                      <strong>Extract Summary:</strong>
+                      <textarea className="form-control h-200px mt-2" readOnly value={summary.extract_summaries || ''} />
+                    </div>
+
+                    {/* </div> */}
+                  </div>
+                </div>
+              </div>
+              <div className="tab-pane fade   mb-4" id="pii" role="tabpanel" aria-labelledby="pii-tab" >
+                <div className="card card-custom container mt-0 w-500px h-400px p-1 shadow-md ">
+                  personally identified information
+                  <div className='overflow-y-auto'>
+                    <p className='text-black'>{redactedtext}</p>
+                    {Array.isArray(piiResult) && piiResult.map((result, index) => (
+                      <div className='grid grid-cols-2 ' key={index}>
+                        <p><strong className='text-primary text-lg'>text:</strong>{result.text}</p>
+                        <p><strong className='text-green-950 text-lg'>category:</strong>{result.category}</p>
+                      </div>
+                    ))}
+
+                  </div>
+
+
 
                 </div>
 
               </div>
             </div>
 
-
           </div>
+
+        </div>
+      {/* </div> */}
+
+
+      {/* </div>
           <Outlet />
         </div>
-      </div>
+      </div> */}
     </div>
 
   );

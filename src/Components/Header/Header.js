@@ -18,8 +18,8 @@ import List from "../Roles/List";
 
 
 
-const Header = () => {
-  const [asideOpen, setAsideOpen] = useState(false);
+const Header = ({asideOpen}) => {
+  // const [asideOpen, setAsideOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState(""); 
   const [tableHistory, setTableHistory] = useState([]); // State to track table history
   const [username, setUsername] = useState("");
@@ -92,7 +92,9 @@ const handleLogout = () => {
   // search.hide();
 
   return (
-    <div className="flex w-full ">
+    <div className={`${
+      asideOpen ? "left-[210px] w-[88%]" : "left-[50px] w-[97%]"
+    } flex justify-start fixed bg-slate-200  `}>
       
  {/* <TraialAside asideOpen={asideOpen} 
         selectedTable={selectedTable} // Pass selected table to AsideBk
@@ -112,13 +114,13 @@ const handleLogout = () => {
 
 
       
-      <div className="w-full ">
-        <div
+      {/* <div className="w-full flex justify-start bg-blue-700  "> */}
+        {/* <div
           id="kt_header"
           className="card header w-full border-bottom h-20 bg-slate-200"
-        >
+        > */}
           {/* <!--begin::Container--> */}
-          <div className="d-flex align-items-stretch">
+          {/* <div className="d-flex align-items-stretch"> */}
             {/* <i className="menu-icon fas fa-bars mt-5" id="menu-icon" 
 			   ></i>  */}
             <div className="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
@@ -4904,16 +4906,16 @@ const handleLogout = () => {
                 {/* {/* <!--end::Toolbar wrapper--> */}
               </div>
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
         {/* <div className="username">Logged in as: {username}</div> */}
         
-        <div className="d-flex align-items-stretch">
+        {/* <div className="d-flex align-items-stretch">
         
-        </div>
+        </div> */}
         
        
-      </div>
+      {/* </div> */}
 
     </div>
   );

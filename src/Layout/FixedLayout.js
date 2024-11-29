@@ -33,7 +33,7 @@ import Header from '../Components/Header/Header'
 import DataTables from '../Components/Tables/DataTables'
 
 const FixedLayout = () => {
-  const [asideOpen, setAsideOpen] = useState(false);
+  const [asideOpen, setAsideOpen] = useState(true);
   const [selectedTable, setSelectedTable] = useState("");
   const [tableHistory, setTableHistory] = useState([]); // State to track table history
   const [username, setUsername] = useState("");
@@ -81,31 +81,49 @@ const FixedLayout = () => {
   };
 
   return (
-    <div className='flex'>
-      <div>
-        <SnowflakeAside asideOpen={asideOpen}
-          selectedTable={selectedTable} // Pass selected table to AsideBk
-          setSelectedTable={setSelectedTable}
-          onTableSelect={handleTableSelect} // Pass callback function to AsideBk
-        />
-      </div>
+    // <div className='flex'>
+    //   <div>
+    //     <SnowflakeAside asideOpen={asideOpen}
+    //       selectedTable={selectedTable} // Pass selected table to AsideBk
+    //       setSelectedTable={setSelectedTable}
+    //       onTableSelect={handleTableSelect} // Pass callback function to AsideBk
+    //     />
+    //   </div>
 
-      <div className='h-22 w-full'>
-        <Header />
-        <div>
-          {/* <Content/> */}
-          <DataTables
-            selectedTable={selectedTable} // Pass selected table to DataTables
-            setSelectedTable={setSelectedTable}
-            onTableSelect={handleTableSelect}
-            onBack={handleBack} // Pass the handleBack callback to DataTables
-          />
-          <Outlet />
-        </div>
-      </div>
+    //   <div className='h-22 w-full'>
+    //     <Header />
+    //     <div>
+    //       {/* <Content/> */}
+    //       {/* <DataTables
+    //         selectedTable={selectedTable} // Pass selected table to DataTables
+    //         setSelectedTable={setSelectedTable}
+    //         onTableSelect={handleTableSelect}
+    //         onBack={handleBack} // Pass the handleBack callback to DataTables
+    //       /> */}
+    //       <Outlet />
+    //     </div>
+    //   </div>
 
 
+    // </div>
+    <div className="flex">
+    <SnowflakeAside 
+      onToggle ={setAsideOpen}
+      asideOpen={asideOpen}
+      selectedTable={selectedTable}
+      setSelectedTable={setSelectedTable}
+      onTableSelect={handleTableSelect}
+    />
+    <div className="h-22  flex justify-end">
+      <Header username={username} onLogout={handleLogout} asideOpen={asideOpen} />
+      <main className={`mt-[70px] ${
+            asideOpen ? "ml-[230px]" : "ml-[80px]"
+          } p-0 bg-metronics_white flex-1 overflow-y-auto`}
+        >
+        <Outlet /> {/* This renders the matched route component */}
+      </main>
     </div>
+  </div>
   )
 }
 

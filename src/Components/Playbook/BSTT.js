@@ -492,22 +492,22 @@ const BSTT = () => {
 
 
   return (
-    <div className="flex ">
-      <div>
-        <SnowflakeAside
-          asideOpen={asideOpen}
-          selectedTable={selectedTable}
-          setSelectedTable={setSelectedTable}
-          onTableSelect={handleTableSelect}
-        />
-      </div>
+    // <div className="flex ">
+    //   <div>
+    //     <SnowflakeAside
+    //       asideOpen={asideOpen}
+    //       selectedTable={selectedTable}
+    //       setSelectedTable={setSelectedTable}
+    //       onTableSelect={handleTableSelect}
+    //     />
+    //   </div>
 
-      <div className="h-22 w-full">
-        <div>
-          <div className="bg-gray-100 vh-100">
-            <div>
-              <Header username={username} onLogout={handleLogout} />
-            </div>
+    //   <div className="h-22 w-full">
+    //     <div>
+    //       <div className="bg-gray-100 vh-100">
+    //         <div>
+    //           <Header username={username} onLogout={handleLogout} />
+    //         </div>
 
             <div className="container d-flex ">
               <div className=" rounded-lg bg-gray-100  items-center  w-500px mx-5 d-flex flex-column ">
@@ -796,11 +796,11 @@ const BSTT = () => {
               </div>
             </div>
 
-          </div>
-          <Outlet />
-        </div>
-      </div>
-    </div>
+    //       </div>
+    //       <Outlet />
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

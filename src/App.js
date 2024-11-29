@@ -52,40 +52,27 @@ const App = () => {
     <div>
       
       <Router>
-        <Routes>
-          <Route path="/" element={<Login setAuthenticated={setAuthenticated} />} />
-          <Route path="/register" element={<Register />} />
+      <Routes>
+  {/* Public Routes */}
+  <Route path="/" element={<Login setAuthenticated={setAuthenticated} />} />
+  <Route path="/register" element={<Register />} />
 
-          {/* Protected routes */}        
-          <Route path="/admin_page" element={<PrivateRoute element={<SnowflakeHeader />} roles={["admin"]} />} />
-          <Route path="/itdstaff" element={<PrivateRoute element={<Itdstaff />} roles={["itdstaff"]} />} />
-          <Route path="/finance" element={<PrivateRoute element={<Finance />} roles={["businessfinance"]} />} />
-          <Route path="/accounts" element={<PrivateRoute element={<DataTables />} roles={["businessaccount"]} />} />
-          <Route path="/audit" element={<PrivateRoute element={<DataTables />} roles={["audit"]} />} />
-          <Route path="/HRpage" element={<PrivateRoute element={<Hrpage />} roles={["hr"]} />} />
-          <Route path="/customer" element={<PrivateRoute element={<FixedLayout />} roles={["customer"]} />}>         
-          {/* <Route index element={<DataTables/>} /> 
-           <Route path="/customer/:tableName" element={<PrivateRoute element={<DataTables/>} roles={["customer"]} />} />  */}
-          </Route>
-          {/* <Route path="/transcribe" element={<PrivateRoute element={<SpeechToText/>} roles={["customer"]} />} /> */}
-         <Route path="/transcribe" element={<PrivateRoute element={<Transcribe/>} roles={["customer"]} />} />
-          <Route path="/speechtotext" element={<PrivateRoute element={<STT />} roles={["customer"]} />} />
-          <Route path="/texttospeech" element={<PrivateRoute element={<TTS />} roles={["customer"]} />} />
-          {/* <Route path="" element={<PrivateRoute element={<BatchSpeechtoText/>} roles={["customer"]} />} /> */}
-          <Route path="/Batchspeechtotext" element={<PrivateRoute element={<BSTT />} roles={["customer"]} />} />
-          {/* language studio */}
-          <Route path="/LanguageSummerization" element={<PrivateRoute element={<Extract />} roles={["customer"]} />} />
-          <Route path="/DetectLanguage" element={<PrivateRoute element={<DetectLanguage />} roles={["customer"]} />} />
-          <Route path="/SentimentAnalysis" element={<PrivateRoute element={<AnalyzeSentiment />} roles={["customer"]} />} />
-          <Route path="/PII" element={<PrivateRoute element={<Recognize_PII_Entities />} roles={["customer"]} />} />
-          {/* translator */}
-          <Route path="/DocumentTranslation" element={<PrivateRoute element={<DocumentTranslation />} roles={["customer"]} />} />
-          <Route path="/:tableName" element={<PrivateRoute element={<HeaderAsideTable />} roles={["customer"]} />} />
-          <Route path="/Edit" element={<PrivateRoute element={<EditScreen />} roles={["customer"]} />} />
-          {/* <Route path="/List"  element={<PrivateRoute element={<FixedLayout />} roles={["customer"]} />}>
-          <Route index element={<List />} />
-        </Route> */}
-        </Routes>
+  {/* Protected Routes with FixedLayout */}
+  <Route element={<PrivateRoute element={<FixedLayout />} roles={["customer", "admin", "hr", "itdstaff", "finance", "businessaccount", "audit"]} />}>
+    <Route path="/transcribe" element={<Transcribe />} />
+    <Route path="/speechtotext" element={<STT />} />
+    <Route path="/texttospeech" element={<TTS />} />
+    <Route path="/Batchspeechtotext" element={<BSTT />} />
+    <Route path="/LanguageSummerization" element={<Extract />} />
+    <Route path="/DetectLanguage" element={<DetectLanguage />} />
+    <Route path="/SentimentAnalysis" element={<AnalyzeSentiment />} />
+    <Route path="/PII" element={<Recognize_PII_Entities />} />
+    <Route path="/DocumentTranslation" element={<DocumentTranslation />} />
+    <Route path="/:tableName" element={<HeaderAsideTable />} />
+    <Route path="/Edit" element={<EditScreen />} />
+  </Route>
+</Routes>
+
       </Router>
       
     </div>
@@ -93,3 +80,44 @@ const App = () => {
 };
 
 export default App;
+
+
+{/* <Routes>
+<Route path="/" element={<Login setAuthenticated={setAuthenticated} />} />
+<Route path="/register" element={<Register />} />
+
+{/* Protected routes         
+<Route path="/admin_page" element={<PrivateRoute element={<SnowflakeHeader />} roles={["admin"]} />} />
+<Route path="/itdstaff" element={<PrivateRoute element={<Itdstaff />} roles={["itdstaff"]} />} />
+<Route path="/finance" element={<PrivateRoute element={<Finance />} roles={["businessfinance"]} />} />
+<Route path="/accounts" element={<PrivateRoute element={<DataTables />} roles={["businessaccount"]} />} />
+<Route path="/audit" element={<PrivateRoute element={<DataTables />} roles={["audit"]} />} />
+<Route path="/HRpage" element={<PrivateRoute element={<Hrpage />} roles={["hr"]} />} />
+<Route path="/customer" element={<PrivateRoute element={<FixedLayout />} roles={["customer"]} />}>         
+{/* <Route index element={<DataTables/>} /> 
+ <Route path="/customer/:tableName" element={<PrivateRoute element={<DataTables/>} roles={["customer"]} />} /> 
+</Route>
+{/* <Route path="/transcribe" element={<PrivateRoute element={<SpeechToText/>} roles={["customer"]} />} /> 
+<Route path="/transcribe" element={<PrivateRoute element={<Transcribe/>} roles={["customer"]} />} />
+<Route path="/speechtotext" element={<PrivateRoute element={<STT />} roles={["customer"]} />} />
+<Route path="/texttospeech" element={<PrivateRoute element={<TTS />} roles={["customer"]} />} />
+{/* <Route path="" element={<PrivateRoute element={<BatchSpeechtoText/>} roles={["customer"]} />} /> 
+<Route path="/Batchspeechtotext" element={<PrivateRoute element={<BSTT />} roles={["customer"]} />} />
+{/* language studio 
+<Route path="/LanguageSummerization" element={<PrivateRoute element={<Extract />} roles={["customer"]} />} />
+<Route path="/DetectLanguage" element={<PrivateRoute element={<DetectLanguage />} roles={["customer"]} />} />
+<Route path="/SentimentAnalysis" element={<PrivateRoute element={<AnalyzeSentiment />} roles={["customer"]} />} />
+<Route path="/PII" element={<PrivateRoute element={<Recognize_PII_Entities />} roles={["customer"]} />} />
+{/* translator 
+<Route path="/DocumentTranslation" element={<PrivateRoute element={<DocumentTranslation />} roles={["customer"]} />} />
+<Route path="/:tableName" element={<PrivateRoute element={<HeaderAsideTable />} roles={["customer"]} />} />
+<Route path="/Edit" element={<PrivateRoute element={<EditScreen />} roles={["customer"]} />} />
+
+</Routes> */}
+
+
+
+
+{/* <Route path="/List"  element={<PrivateRoute element={<FixedLayout />} roles={["customer"]} />}>
+<Route index element={<List />} />
+</Route> */}

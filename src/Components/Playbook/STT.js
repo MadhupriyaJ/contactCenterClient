@@ -48,6 +48,7 @@ const STT = () => {
   const [authenticated, setAuthenticated] = useState(true);
 
   const navigate = useNavigate();
+// rishi
 
   const startRecord = async () => {
     const { TextAnalyticsClient, AzureKeyCredential } = require("@azure/ai-text-analytics");
@@ -291,7 +292,7 @@ const STT = () => {
   return (
 
     <div className='flex '>
-      <div >
+      {/* <div >
         <SnowflakeAside asideOpen={asideOpen}
           selectedTable={selectedTable} // Pass selected table to AsideBk
           setSelectedTable={setSelectedTable}
@@ -300,17 +301,18 @@ const STT = () => {
       </div>
 
       <div className='h-22 w-full '>
-        {/* <Header /> */}
+        {/* <Header /> 
         <div className='bg-sky-50 h-full w-full'>
 
           <div className=' h-full w-full'>
-            <Header />
+            <Header /> */}
 
-            <div className="container grid grid-cols-2 gap-0 justify-center mt-6  h-5/6 min-w-full ml-2">
+            <div className="container grid grid-cols-2 gap-0 justify-center mt-6  h-5/6 min-w-full ml-2 bg-sky-50">
 
               <div className='card container ml-72 mr-0 mt-2 h-350px max-w-xl shadow-md shadow-slate-400 col-span-1 '
               //  className="card container bg-white shadow-md p-8 rounded-lg w-full max-w-md"
               >
+                {/* rishi */}
                 <h1 className="text-3xl font-bold mb-6 flex justify-center mt-4">Speech-to-Text</h1>
                 {/* <button className='px-4 py-2 border rounded bg-blue-600 text-white hover:bg-blue-700' onClick={startRecord}>Start Record</button> */}
                 <div className="flex items-center justify-center mb-4 mt-14">
@@ -368,7 +370,7 @@ const STT = () => {
                       </button>
                     </li>
                   </ul>
-
+{/* rishi */}
                   <div className="tab-content h-400px w-1000px " id="myTabContent">
                     {/* transcript */}
                     <div className="tab-pane fade show active " id="analyze" role="tabpanel" aria-labelledby="analyze-tab" >
@@ -521,10 +523,10 @@ const STT = () => {
 
             </div>
           </div>
-        </div>
-        <Outlet />
-      </div>
-    </div>
+    //     </div>
+    //     <Outlet />
+    //   </div>
+    // </div>
 
 
   );

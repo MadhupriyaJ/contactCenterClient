@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import KTScroll from "../js/components/scroll";
 
 
-const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
+const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable,onToggle }) => {
   // const [asideOpen, setAsideOpen] = useState(true);
 
   // // Function to toggle the aside state
@@ -93,8 +93,11 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
     }
   };
   const toggleAside = () => {
-    setAsideOpen((prevAsideOpen) => !prevAsideOpen);
-  };
+    setAsideOpen(!asideOpen)
+    onToggle(!asideOpen)
+    // setAsideOpen((prevAsideOpen) => !prevAsideOpen);
+  }
+
   const openNav = () => {
     setAsideOpen(true);
   };
@@ -102,34 +105,34 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
     setAsideOpen(false);
   };
   
-  // const tableNamesMapping = {
-  //   AdminandUserLogin: 'Login',
-  //   at_entity: 'Entity',
-  //   at_language: 'Language',
-  //   at_country: 'Country',
-  //   at_city: 'City',
-  //   at_city_zone: 'CityZone',
-  //   at_region: 'Region',
-  //   at_division: 'Division',
-  //   at_department: 'Department',
-  //   at_designation: 'Designation',
-  //   at_roles: 'Roles',
-  //   at_roles_desig: 'Roles Designation',
-  //   at_module: 'Module',
-  //   at_menu: 'Menu',
-  //   at_screen: 'Screen',
-  //   at_field: 'Field',
-  //   at_txns: 'Transactions',
-  //   at_user: 'User',
-  //   user_menus: 'User Menus',
-  //   user_screens: 'User Screens',
-  //   user_roles_design: 'User Roles Design',
-  //   user_roles_design_excep: 'User Roles Design Except',
-  //   at_userlogins: 'User Logins',
-  //   at_userlogins_screens: 'User Login Screens',
-  //   at_admin_logs: 'Admin Logs',
-  //   at_control: 'Control',
-  // };
+  const tableNamesMapping = {
+    AdminandUserLogin: 'Login',
+    at_entity: 'Entity',
+    at_language: 'Language',
+    at_country: 'Country',
+    at_city: 'City',
+    at_city_zone: 'CityZone',
+    at_region: 'Region',
+    at_division: 'Division',
+    at_department: 'Department',
+    at_designation: 'Designation',
+    at_roles: 'Roles',
+    at_roles_desig: 'Roles Designation',
+    at_module: 'Module',
+    at_menu: 'Menu',
+    at_screen: 'Screen',
+    at_field: 'Field',
+    at_txns: 'Transactions',
+    at_user: 'User',
+    user_menus: 'User Menus',
+    user_screens: 'User Screens',
+    user_roles_design: 'User Roles Design',
+    user_roles_design_excep: 'User Roles Design Except',
+    at_userlogins: 'User Logins',
+    at_userlogins_screens: 'User Login Screens',
+    at_admin_logs: 'Admin Logs',
+    at_control: 'Control',
+  };
   
   KTMenu.createInstances();
   var menuElement = document.querySelector("#kt_menu");
@@ -152,8 +155,8 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
 
   return (
     <div
-      className={`aside ${asideOpen ? 'open' : ''}h-[100vh]`}
-      onMouseEnter={openNav}
+      className={`aside ${asideOpen ? 'open' : ''}h-[100vh] fixed`}
+      // onMouseEnter={openNav}
     >
       <div
         id="kt_aside"
@@ -179,8 +182,8 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
                 <a href="../../demo1/dist/index.html">
                   <img
                     alt="Logo"
-                    src="assets/media/logos/snowflake-logo.png"
-                    class="w-44"
+                    src="assets/media/logos/cerulean-logo(1).png"
+                    class="w-64"
                   />
                 </a>
               </div>
@@ -189,8 +192,8 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
                 <a href="../../demo1/dist/index.html">
                   <img
                     alt="Logo"
-                    src="assets/media/logos/snowflake-logo.png"
-                    class="w-26" // Adjust the size as needed (50% size)
+                    src="assets/media/logos/snowflakeds.png"
+                    class="w-24" // Adjust the size as needed (50% size)
                   />
                 </a>
               </div>
@@ -373,7 +376,7 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
                       </div>
                     </div>
                     {/* REALTIME SPEECH TO TEXT */}
-                    {/* <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
                       <div class="menu-item">
                         <a
                           class="menu-link"
@@ -385,7 +388,7 @@ const SnowflakeAside = ({onTableSelect,setSelectedTable,selectedTable}) => {
                           <span class="menu-title">Real Time Speech To Text</span>
                         </a>
                       </div>
-                    </div> */}
+                    </div>
                     {/* TEXT TO SPEECH */}
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                       <div class="menu-item">

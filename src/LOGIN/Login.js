@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from '../Asset/playbook/snowflake-logo.png'
+import logo from '../Asset/playbook/cerulean-logo(1).png'
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -151,17 +151,17 @@ const Login = ({ setAuthenticated }) => {
   };
 
   return (
-    <div class="d-flex flex-column flex-root ">
+    <div class="d-flex flex-column flex-root bg-black mb-2">
 
-      <div class="d-flex  flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed ">
+      <div class="d-flex  flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
   
         <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
         
           <a href="../../demo1/dist/index.html" class="mb-12">
-            <img alt="Logo" src={logo} class="h-40px  rounded-lg px-28" />
+            <img alt="Logo" src={logo} class="h-32  rounded-lg px-28" />
           </a>
       
-          <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto   ">
+          <div class="w-lg-500px bg-body rounded  p-10 p-lg-15 mx-auto  shadow-2xl shadow-slate-500 ">
             <form class="form w-100 " novalidate="novalidate" id="kt_sign_in_form" action="#" >
               <div class="text-center mb-10">
                 <h1 class="text-dark mb-3 font-semibold text-3xl">Sign In</h1>
@@ -226,7 +226,7 @@ const Login = ({ setAuthenticated }) => {
           </div>
         </div>
 
-        <div class="d-flex flex-center flex-column-auto p-10">
+        <div class="d-flex flex-center flex-column-auto p-10 ">
           <div class="d-flex align-items-center fw-bold fs-6">
             <a
               href=""
